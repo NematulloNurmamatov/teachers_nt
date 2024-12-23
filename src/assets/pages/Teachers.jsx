@@ -54,8 +54,8 @@ export default function Teachers() {
                                                 <p className="leading-relaxed mb-2">Manzil: {item?.address}</p>
                                                 <p className="leading-relaxed mb-2">Bio: {item?.bio}</p>
                                                 <div className="flex items-center justify-between">
-                                                    <Link to={`/teachersdetails/${item.id}`}>
-                                                        learn more
+                                                    <Link to={`/teachersdetails/${item.id}`} style={{color: "blue"}}>
+                                                        Oquvchilarini korish
                                                     </Link>
                                                         <svg className="w-4 h-4 ml-2" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round">
                                                             <path d="M5 12h14"></path>
