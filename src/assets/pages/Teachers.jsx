@@ -1,15 +1,21 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import { Atom } from 'react-loading-indicators'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
+import { useAxios } from '../hooks/useAxios'
 // import AddTeachers from './AddTeachers'
+
 
 export default function Teachers() {
 
     const [data_source, setDataSource] = useState([])
     const [loading, setLoading] = useState(true)
     const [error, setError] = useState(false)
+    const navigate = useNavigate()
+    // const axios = useAxios()
 
+
+    // axios({ url: "/teachers" }).then((res) => setDataSource(res))
 
     const getTeachers = () => {
         axios.get("https://67659527410f849996558ed6.mockapi.io/teachers")
@@ -29,6 +35,8 @@ export default function Teachers() {
             .then((res) => {
                 console.log(res)
                 getTeachers()
+                // axios({ url: "/teachers" }).then((res) => setDataSource(res))
+
             }).catch((err) => {
                 console.log(err)
                 setError(true)
@@ -38,8 +46,11 @@ export default function Teachers() {
         // navigate(`/editteacher/${id}`)
     }
 
+
     useEffect(() => {
         getTeachers()
+        // axios({ url: "/teachers" }).then((res) => setDataSource(res))
+
     }, [])
 
 
@@ -52,10 +63,10 @@ export default function Teachers() {
     }
 
     return (
-        <div>
+        <div className='dark:bg-gray-800 dark:text-white'>
             <section className="text-gray-600 body-font">
                 <div className="container px-5 py-24 mx-auto">
-                    <div className='flex justify-end border mb-4 p-2 w-[200px]'>
+                    <div className='flex justify-end border mb-4 p-2 w-[200px] dark:bg-[#f1f1d1] dark:text-black'>
                         <Link to={"/addteacher"}>
                             Yangi o'qituvchi qo'shish
                         </Link>
@@ -65,7 +76,7 @@ export default function Teachers() {
                             data_source?.map((item, index) => {
                                 return (
                                     <div className="p-4 w-full sm:w-1/1 md:w-1/2 lg:w-1/3">
-                                        <div className="h-full border-2 border-gray-200 border-opacity-60 rounded-lg shadow-lg overflow-hidden">
+                                        <div className="h-full border-2 border-gray-200 border-opacity-60 rounded-lg shadow-lg overflow-hidden dark:bg-[#f1f1d1]">
                                             <img className="lg:h-48 md:h-36 w-full object-cover object-center" src={item.avatar} alt="blog" />
                                             <div className="p-6">
                                                 <h2 className="tracking-widest title-font font-medium text-black mb-1">{item.name}</h2>
@@ -96,7 +107,7 @@ export default function Teachers() {
                                                 </div>
                                                 <div className='flex w-full gap-4'>
                                                     <div className=' w-full border border-green-500 mt-4 p-2 text-center bg-green-500 rounded text-white cursor-pointer'>
-                                                        <button onClick={() => { editHandle(item.id) }}>Delete</button>
+                                                        <button onClick={() => { navigate(`/addteacher/?id=${item?.id}`) }}>Edit</button>
                                                     </div>
                                                     <div className=' w-full border border-red-500 mt-4 p-2 text-center bg-red-500 rounded text-white cursor-pointer'>
                                                         <button onClick={() => { deleteHandle(item.id) }}>Delete</button>

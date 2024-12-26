@@ -10,6 +10,7 @@ import Students from './assets/pages/Students';
 import ErrorPage from './assets/pages/ErrorPage';
 import TeachersDetails from './assets/pages/TeachersDetails';
 import AddTeachers from './assets/pages/AddTeachers';
+import AddStudent from './assets/pages/AddStudent';
 // import reportWebVitals from './reportWebVitals';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -22,6 +23,7 @@ root.render(
           <Route path="/students" element={<Students/>} />
           <Route path="/teachersdetails/:id" element={<TeachersDetails/>} />
           <Route path="addteacher" element={<AddTeachers/>} />
+          <Route path="addstudent" element={<AddStudent/>} />
           <Route path="*" element={<ErrorPage/>} />
         </Route>
       </Routes>
