@@ -14,7 +14,6 @@ export default function Teachers() {
     const navigate = useNavigate()
     // const axios = useAxios()
 
-
     // axios({ url: "/teachers" }).then((res) => setDataSource(res))
 
     const getTeachers = () => {
