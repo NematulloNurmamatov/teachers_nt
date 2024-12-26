@@ -173,32 +173,32 @@ export default function AddStudent() {
                 <form ref={formRef}>
                     <div className="grid gap-4 sm:grid-cols-2 sm:gap-6">
                         <div className="sm:col-span-2">
-                            <label htmlFor="name" className="block mb-2 text-sm font-medium">O'quvchining ismi</label>
-                            <input type="text" name="name" id="name" className="bg-gray-50 border text-sm rounded-lg w-full p-2.5" required />
+                            <label htmlFor="name" className=" dark:text-white block mb-2 text-sm font-medium">O'quvchining ismi</label>
+                            <input type="text" name="name" id="name" className="dark:bg-gray-300 dark:border-gray-300 bg-gray-50 border text-sm rounded-lg w-full p-2.5" required />
                         </div>
                         <div>
-                            <label htmlFor="rasm" className="block mb-2 text-sm font-medium">Rasm</label>
-                            <input type="text" name="rasm" id="rasm" className="bg-gray-50 border text-sm rounded-lg w-full p-2.5" required />
+                            <label htmlFor="rasm" className=" dark:text-white block mb-2 text-sm font-medium">Rasm</label>
+                            <input type="text" name="rasm" id="rasm" className="dark:bg-gray-300 dark:border-gray-300 bg-gray-50 border text-sm rounded-lg w-full p-2.5" required />
                         </div>
                         <div>
-                            <label htmlFor="telephone" className="block mb-2 text-sm font-medium">Telefon raqami</label>
-                            <input type="text" name="telephone" id="telephone" className="bg-gray-50 border text-sm rounded-lg w-full p-2.5" required />
+                            <label htmlFor="telephone" className=" dark:text-white block mb-2 text-sm font-medium">Telefon raqami</label>
+                            <input type="text" name="telephone" id="telephone" className="dark:bg-gray-300 dark:border-gray-300bg-gray-50 border text-sm rounded-lg w-full p-2.5" required />
                         </div>
                         <div>
-                            <label htmlFor="bio" className="block mb-2 text-sm font-medium">Bio</label>
-                            <input type="text" name="bio" id="bio" className="bg-gray-50 border text-sm rounded-lg w-full p-2.5" required />
+                            <label htmlFor="bio" className=" dark:text-white block mb-2 text-sm font-medium">Bio</label>
+                            <input type="text" name="bio" id="bio" className=" dark:bg-gray-300 dark:border-gray-300bg-gray-50 border text-sm rounded-lg w-full p-2.5" required />
                         </div>
                         <div>
-                            <label htmlFor="age" className="block mb-2 text-sm font-medium">Yoshi</label>
-                            <input type="number" name="age" id="age" className="bg-gray-50 border text-sm rounded-lg w-full p-2.5" required />
+                            <label htmlFor="age" className=" dark:text-white block mb-2 text-sm font-medium">Yoshi</label>
+                            <input type="number" name="age" id="age" className="b dark:bg-gray-300 dark:border-gray-300 g-gray-50 border text-sm rounded-lg w-full p-2.5" required />
                         </div>
                         <div>
-                            <label htmlFor="manzil" className="block mb-2 text-sm font-medium">Manzil</label>
-                            <input type="text" name="manzil" id="manzil" className="bg-gray-50 border text-sm rounded-lg w-full p-2.5" required />
+                            <label htmlFor="manzil" className=" dark:text-white block mb-2 text-sm font-medium">Manzil</label>
+                            <input type="text" name="manzil" id="manzil" className=" dark:bg-gray-300 dark:border-gray-300bg-gray-50 border text-sm dark:bg-gray-300 dark:border-gray-300 rounded-lg w-full p-2.5" required />
                         </div>
-                        <div className="sm:col-span-2">
-                            <label htmlFor="teacher" className="block mb-2 text-sm font-medium">O'qituvchisi</label>
-                            <select name="teacher" id="teacher" className="bg-gray-50 border text-sm rounded-lg w-full p-2.5" required>
+                        <div className="">
+                            <label htmlFor="teacher" className=" dark:text-white block mb-2 text-sm font-medium">O'qituvchisi</label>
+                            <select name="teacher" id="teacher" className=" dark:bg-gray-300 dark:border-gray-300 bg-gray-50 border text-sm rounded-lg w-full p-2.5" required>
                                 <option value="">O'qituvchini tanlang</option>
                                 {teachers.map((teacher) => (
                                     <option key={teacher.id} value={teacher.id}>{teacher.name}</option>

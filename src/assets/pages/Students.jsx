@@ -3,7 +3,6 @@ import React, { useEffect, useState } from 'react'
 import { Atom } from 'react-loading-indicators'
 import { Link } from 'react-router-dom'
 
-
 export default function Teachers() {
 
     const [data_source, setDataSource] = useState([])
@@ -11,7 +10,6 @@ export default function Teachers() {
 
     // O'quvchilarni olish
     const getTeachers = () => {
-        setLoading(true)
         axios.get("https://67659527410f849996558ed6.mockapi.io/students")
             .then((res) => {
                 console.log(res?.data);
@@ -24,9 +22,56 @@ export default function Teachers() {
             })
     }
 
+    // function deleteStudent(id) {
+    //     axios.delete(`https://67659527410f849996558ed6.mockapi.io/students/${id}`)
+    //         .then((res) => {
+    //             console.log(res)
+    //             setDataSource(res?.data)
+    //             getTeachers()
+    //             // axios({ url: "/teachers" }).then((res) => setDataSource(res))
+
+    //         }).catch((err) => {
+    //             console.log(err)
+    //             // setError(true)
+    //         })
+    // }
+
+    // function deleteStudent (id) {
+    //     console.log(`O'chirishga tayyorlanmoqda, ID: ${id}`); // Debug uchun
+    //     axios.delete(`https://67659527410f849996558ed6.mockapi.io/students/${id}`)
+    //         .then((res) => {
+    //             console.log('Ma\'lumot o\'chirildi:', res);
+    //             alert("O'quvchi muvaffaqiyatli o'chirildi.");
+    //         })
+    //         .catch((err) => {
+    //             console.error('Xato:', err.message); // Debug uchun
+    //             alert("O'quvchini o'chirishda xatolik yuz berdi.");
+    //         });
+    // };
+    
+
+    // function deleteStudent (id) {
+    //     axios.delete(`https://67659527410f849996558ed6.mockapi.io/students/${id}`)
+    //         .then(() => {
+    //             setDataSource(prevData => prevData.filter(student => student.id !== id));
+    //             alert("O'quvchi muvaffaqiyatli o'chirildi.");
+    //         })
+    //         .catch((err) => {
+    //             console.error("Xatolik:", err);
+    //             alert(`O'quvchini o'chirishda xatolik yuz berdi: ${err.message}`);
+    //         });
+    // }
+    // const editHandle = (id) => {
+    //     // navigate(`/editteacher/${id}`)
+    // }
+
+
     useEffect(() => {
-        getTeachers()  // Faqat o'quvchilarni olish
+        getTeachers()
+        // axios({ url: "/teachers" }).then((res) => setDataSource(res))
+
     }, [])
+
 
     const deleteStudent = (id) => {
         console.log(`Deleting student with id: ${id}`);
@@ -35,13 +80,37 @@ export default function Teachers() {
             .then((res) => {
                 console.log('Response:', res);
                 alert("O'quvchi o'chirildi");
-                // setDataSource(res);
-                // O'chirilgan o'quvchini ro'yxatdan olib tashlash
-                setDataSource(prevData => prevData.filter((student) => student.id !== id));
+                getTeachers();
+                // setDataSource(prevData => prevData.filter((student) => student.id !== id));
             })
             .catch((err) => {
                 console.log('Error:', err.response);
                 alert("O'quvchini o'chirishda xatolik yuz berdi");
+            });
+    };
+
+    // function deleteStudent(id) {
+    //     axios.delete(`https://67659527410f849996558ed6.mockapi.io/students/${id}`)
+    //     .then((res) => {
+    //         console.log('Response:', res);
+    //         alert("O'quvchi o'chirildi");
+    //     })
+    // }
+
+    const editStudent = (id, updatedData) => {
+        console.log(`Editing student with id: ${id}`, updatedData);
+
+        axios.put(`https://67659527410f849996558ed6.mockapi.io/students/${id}`, updatedData)
+            .then((res) => {
+                console.log('Response:', res);
+                alert("O'quvchi ma'lumotlari yangilandi");
+                setDataSource(prevData => prevData.map((student) =>
+                    student.id === id ? res.data : student
+                ));
+            })
+            .catch((err) => {
+                console.log('Error:', err.response);
+                alert("O'quvchi ma'lumotlarini yangilashda xatolik yuz berdi");
             });
     };
 
@@ -54,9 +123,9 @@ export default function Teachers() {
             <section className="text-gray-600 body-font">
                 <div className="container px-5 py-24 mx-auto">
 
-                    <div className='flex justify-end border mb-4 p-2 w-[150px] dark:bg-[#f1f1d1] dark:text-black'>
+                    <div className='flex justify-end border border-[#006eff] text-black mb-4 p-2 w-[185px] dark:bg-[#006eff] dark:text-white rounded'>
                         <Link to={"/addstudent"}>
-                            O'quvchi qo'shish
+                            Yangi o'quvchi qo'shish
                         </Link>
                     </div>
 
@@ -74,13 +143,31 @@ export default function Teachers() {
                                                 <p className="leading-relaxed mb-2">Age: {item?.age}</p>
                                                 <p className="leading-relaxed mb-2">Manzil: {item?.manzil}</p>
                                                 <p className="leading-relaxed mb-2">Bio: {item?.bio}</p>
-                                                {/* Delete button */}
-                                                <button
-                                                    onClick={() => deleteStudent(item.id)}
-                                                    className="mt-4 bg-red-500 text-white py-1 px-3 rounded"
-                                                >
-                                                    O'chirish
-                                                </button>
+                                                {/* Edit button */}
+                                                <div className='flex justify-between'>
+                                                    <button
+                                                        onClick={() => {
+                                                            const updatedData = {
+                                                                name: prompt("Yangi ismni kiriting", item.name),
+                                                                telephone: prompt("Yangi telefon raqamini kiriting", item.telephone),
+                                                                age: prompt("Yangi yoshni kiriting", item.age),
+                                                                manzil: prompt("Yangi manzilni kiriting", item.manzil),
+                                                                bio: prompt("Yangi bio kiriting", item.bio)
+                                                            };
+                                                            editStudent(item.id, updatedData);
+                                                        }}
+                                                        className="mt-4 bg-green-500 w-full text-white py-1 px-3 rounded mr-2"
+                                                    >
+                                                        Tahrirlash
+                                                    </button>
+                                                    {/* Delete button */}
+                                                    <button
+                                                        onClick={() => deleteStudent(item.id)}
+                                                        className="mt-4 bg-red-500 w-full text-white py-1 px-3 rounded"
+                                                    >
+                                                        O'chirish
+                                                    </button>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>

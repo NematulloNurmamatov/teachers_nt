@@ -65,7 +65,7 @@ export default function Teachers() {
         <div className='dark:bg-gray-800 dark:text-white'>
             <section className="text-gray-600 body-font">
                 <div className="container px-5 py-24 mx-auto">
-                    <div className='flex justify-end border mb-4 p-2 w-[200px] dark:bg-[#f1f1d1] dark:text-black'>
+                    <div className='flex justify-end border border-[#006eff] text-black mb-4 p-2 w-[200px] dark:bg-[#006eff] dark:text-white rounded'>
                         <Link to={"/addteacher"}>
                             Yangi o'qituvchi qo'shish
                         </Link>
