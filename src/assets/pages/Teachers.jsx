@@ -54,7 +54,7 @@ export default function Teachers() {
 
 
     if (loading) {
-        return <div className='pt-40 text-3xl text-center texxt-red-500'><Atom color="#32cd32" size="medium" text="" textColor="" /></div>
+        return <div className=' dark:bg-gray-800 pt-40 text-3xl text-center text-red-500'><Atom color="#32cd32" size="medium" text="" textColor="" /></div>
     }
 
     if (error) {
@@ -105,10 +105,10 @@ export default function Teachers() {
                                                     </span>
                                                 </div>
                                                 <div className='flex w-full gap-4'>
-                                                    <div className=' w-full border border-green-500 mt-4 p-2 text-center bg-green-500 rounded text-white cursor-pointer'>
+                                                    <div className=' w-full border border-green-500 mt-4 p-2 py-1 text-center bg-green-500 rounded text-white cursor-pointer'>
                                                         <button onClick={() => { navigate(`/addteacher/?id=${item?.id}`) }}>Edit</button>
                                                     </div>
-                                                    <div className=' w-full border border-red-500 mt-4 p-2 text-center bg-red-500 rounded text-white cursor-pointer'>
+                                                    <div className=' w-full border border-red-500 mt-4 p-2 py-1 text-center bg-red-500 rounded text-white cursor-pointer'>
                                                         <button onClick={() => { deleteHandle(item.id) }}>Delete</button>
                                                     </div>
                                                 </div>

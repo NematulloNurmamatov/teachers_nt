@@ -115,7 +115,7 @@ export default function Teachers() {
     };
 
     if (loading) {
-        return <div className='pt-40 text-3xl text-center text-red-500'><Atom color="#32cd32" size="medium" text="" textColor="" /></div>
+        return <div className=' dark:bg-gray-800 pt-40 text-3xl text-center text-red-500'><Atom color="#32cd32" size="medium" text="" textColor="" /></div>
     }
 
     return (
