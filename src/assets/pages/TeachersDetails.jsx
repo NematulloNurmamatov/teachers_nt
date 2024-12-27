@@ -4,6 +4,7 @@ import { Atom } from 'react-loading-indicators'
 import { useParams } from 'react-router-dom'
 
 
+
 export default function TeachersDetails() {
 
     const [data_t, setDataT] = useState()
